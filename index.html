@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Seven Car | Aluguel de Carros</title>
+    <style>
+        /* --- PALETA DE AZUIS E ESTILOS GERAIS --- */
+        :root {
+            --primary-color: #004d99; /* Azul Marinho Profundo */
+            --secondary-color: #007bff; /* Azul Vivo */
+            --dark-color: #333;
+            --light-bg: #f2f7ff; /* Azul claro suave */
+            --whatsapp-color: #25D366;
+            --gallery-bg: #f8f8f8; /* Fundo cinza claro para as fotos */
+            --instagram-color: #E1306C; /* Cor do Instagram */
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--dark-color);
+            background-color: white;
+        }
+
+        a {
+            text-decoration: none;
+            color: var(--secondary-color);
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: auto;
+            overflow: hidden;
+        }
+
+        h2 {
+            font-size: 2.5em;
+            text-align: center;
+            margin-bottom: 5px; 
+            color: var(--primary-color);
+        }
+
+        /* ESTILO PARA A LEGENDA CURTA */
+        .subheading {
+            text-align: center;
+            font-size: 1.2em;
+            color: var(--secondary-color);
+            margin-bottom: 30px; 
+            font-weight: 500;
+        }
+
+        /* --- HEADER E NAVEGAÇÃO --- */
+        header {
+            background: white;
+            padding: 10px 0; 
+            border-bottom: 3px solid var(--primary-color);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            position: static; 
+        }
+
+        header .container {
+            display: flex;
+            justify-content: space-between; 
+            align-items: center; 
+        }
+
+        header .logo {
+            position: static; 
+            margin-right: auto;
+        }
+
+        header .logo img {
+            /* LOGO MAIS DESTACADO */
+            height: 100px; 
+            width: auto; 
+            vertical-align: middle;
+        }
+        
+        nav {
+            margin-left: 0; 
+        }
+        
+        nav ul {
+            list-style: none;
+            display: flex;
+            align-items: center; 
+        }
+
+        nav ul li a {
+            color: var(--dark-color);
+            padding: 10px 15px;
+            display: block;
+            font-weight: 600;
+            transition: color 0.3s;
+        }
+
+        nav ul li a:hover {
+            color: var(--secondary-color);
+        }
+        
+        /* ESTILO DO BOTÃO DE WHATSAPP NO HEADER */
+        nav ul li .btn-header-whatsapp {
+            background-color: var(--whatsapp-color);
+            color: white;
+            padding: 8px 20px;
+            border-radius: 50px; 
+            margin-left: 15px;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+
+        nav ul li .btn-header-whatsapp:hover {
+            background-color: #1da84f; 
+            color: white;
+        }
+
+        /* --- SEÇÃO HERO (BANNER) --- */
+        #hero {
+            background: url('banner-sevencar.png') no-repeat center center/cover; 
+            padding: 0;
+            margin-top: 0; 
+            height: 450px; 
+            margin-bottom: 40px;
+        }
+
+        #hero .container {
+            display: none;
+        }
+        
+        /* --- SEÇÃO GALERIA DE IMPACTO (UNIFICADA) --- */
+        #galeria-impacto {
+            background-color: var(--gallery-bg);
+            padding: 60px 0;
+        }
+        
+        .galeria-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 15px;
+            margin-top: 30px;
+        }
+        
+        .galeria-item {
+            overflow: hidden;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
+        }
+        
+        .galeria-item img {
+            width: 100%;
+            height: 250px; 
+            object-fit: cover;
+            display: block;
+            transition: transform 0.3s;
+        }
+        
+        .galeria-item img:hover {
+            transform: scale(1.05);
+        }
+
+        /* --- SEÇÃO VANTAGENS (TEXTUAL) --- */
+        #vantagens {
+            background-color: var(--light-bg);
+            padding: 60px 0;
+        }
+
+        .vantagens-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center;
+        }
+
+        .vantagem-item {
+            background: white;
+            padding: 25px;
+            text-align: center;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            border-top: 5px solid var(--secondary-color);
+            flex: 1 1 200px;
+            min-width: 250px;
+        }
+
+        .vantagem-item h3 {
+            color: var(--primary-color);
+            margin-bottom: 10px;
+        }
+
+        /* --- SEÇÃO NOSSA FROTA --- */
+        #frota {
+            padding: 60px 0;
+            background-color: white;
+        }
+
+        .frota-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 30px;
+        }
+
+        .carro-card {
+            background: var(--light-bg);
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            overflow: hidden;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s;
+        }
+
+        .carro-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        .carro-card img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            border-bottom: 1px solid var(--secondary-color);
+        }
+
+        .carro-info {
+            padding: 20px;
+        }
+
+        .carro-info h3 {
+            color: var(--primary-color);
+            margin-bottom: 15px;
+            font-size: 1.6em;
+        }
+
+        .carro-info .btn-contratar {
+            display: inline-block;
+            background: var(--whatsapp-color);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 5px;
+            margin-top: 15px;
+            transition: background 0.3s;
+            font-weight: bold;
+        }
+
+        .carro-info .btn-contratar:hover {
+            background: #1da84f;
+        }
+
+        /* --- SEÇÃO CONTATO (WHATSAPP E INSTAGRAM) NO RODAPÉ --- */
+        #contato {
+            background: var(--primary-color);
+            color: white;
+            padding: 60px 0;
+            text-align: center;
+        }
+
+        #contato h2 {
+            color: white;
+            margin-bottom: 30px;
+        }
+        
+        /* Container para alinhar os botões em linha */
+        .contato-links {
+            display: flex;
+            justify-content: center;
+            gap: 20px; /* Espaço entre os botões */
+            margin-top: 30px;
+        }
+
+        .btn-social {
+            display: inline-block;
+            color: white;
+            font-size: 1.2em;
+            padding: 15px 30px;
+            border-radius: 50px;
+            transition: opacity 0.3s;
+            font-weight: bold;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+            /* Resetando o hover para a cor do Instagram não mudar */
+            text-decoration: none; 
+        }
+
+        .btn-whatsapp {
+            background: var(--whatsapp-color);
+        }
+
+        .btn-whatsapp:hover {
+            opacity: 0.9;
+        }
+
+        .btn-instagram {
+            background: var(--instagram-color);
+        }
+
+        .btn-instagram:hover {
+            opacity: 0.9;
+        }
+        /* --- FIM SEÇÃO CONTATO --- */
+
+        /* --- FOOTER --- */
+        footer {
+            background: var(--dark-color);
+            color: white;
+            text-align: center;
+            padding: 20px 0;
+            font-size: 0.9em;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="container">
+            <div class="logo">
+                <img src="seven-car-logo.png" alt="Seven Car Logo">
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="#hero">Home</a></li>
+                    <li><a href="#frota">Frota</a></li>
+                    <li><a href="#galeria-impacto">Galeria</a></li> 
+                    <li>
+                        <a 
+                            href="https://wa.me/558386647011?text=Olá%2C%20gostaria%20de%20alugar%20um%20carro." 
+                            target="_blank" 
+                            class="btn-header-whatsapp"
+                        >
+                            Contato
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section id="hero">
+        </section>
+
+        <section id="galeria-impacto">
+            <div class="container">
+                <h2>Qualidade e Atendimento que Você Merece</h2>
+                <div class="galeria-grid">
+                    
+                    <div class="galeria-item">
+                        <img src="imgi_19_happy-customer-buying-new-car-dealership-2048x1367.jpg" alt="Cliente com o polegar para cima">
+                    </div>
+                    
+                    <div class="galeria-item">
+                        <img src="imgi_2_happy-customer-buying-new-car-dealership-scaled.jpg" alt="Cliente feliz e satisfeito">
+                    </div>
+
+                    <div class="galeria-item">
+                        <img src="imgi_12_businessman-in-the-luxury-car-at-the-showroom.jpg" alt="Profissional em carro premium">
+                    </div>
+
+                    <div class="galeria-item">
+                        <img src="imgi_11_at-a-car-dealership-buying-a-car-5-1.jpg" alt="Cliente com chave do carro">
+                    </div>
+                    
+                </div>
+            </div>
+        </section>
+        
+        <section id="vantagens">
+            <div class="container">
+                <h2>Nossos Compromissos</h2>
+                <p class="subheading">Confiança em Cada Quilômetro.</p> 
+
+                <div class="vantagens-grid">
+                    <div class="vantagem-item">
+                        <h3>Carros Novos</h3>
+                        <p>Frota renovada e moderna, garantindo segurança e conforto.</p>
+                    </div>
+                    <div class="vantagem-item">
+                        <h3>Suporte 24h</h3>
+                        <p>Assistência completa para qualquer imprevisto durante a locação.</p>
+                    </div>
+                    <div class="vantagem-item">
+                        <h3>Tarifas Justas</h3>
+                        <p>Melhor custo-benefício do mercado, sem letras miúdas.</p>
+                    </div>
+                    <div class="vantagem-item">
+                        <h3>Sem Burocracia</h3>
+                        <p>Processo de aluguel rápido e simplificado.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="frota">
+            <div class="container">
+                <h2>Nossa Frota</h2>
+                <div class="frota-grid">
+                    
+                    <div class="carro-card">
+                        <img src="image_ad70a9.png" alt="Chevrolet Onix LT">
+                        <div class="carro-info">
+                            <h3>Chevrolet Onix LT 2020</h3>
+                            <p>Intermediário, Multimídia e Conforto.</p>
+                            <a href="https://wa.me/558386647011?text=Olá%2C%20gostaria%20de%20alugar%20o%20Onix%20LT." target="_blank" class="btn-contratar">Contratar via WhatsApp</a>
+                        </div>
+                    </div>
+                    
+                    <div class="carro-card">
+                        <img src="image_ad7126.png" alt="Chevrolet Onix Joy 2020">
+                        <div class="carro-info">
+                            <h3>Chevrolet Onix Joy 2020</h3>
+                            <p>Econômico, Perfeito para o dia a dia.</p>
+                            <a href="https://wa.me/558386647011?text=Olá%2C%20gostaria%20de%20alugar%20o%20Onix%20Joy." target="_blank" class="btn-contratar">Contratar via WhatsApp</a>
+                        </div>
+                    </div>
+                    
+                    <div class="carro-card">
+                        <img src="image_ad73ec.png" alt="Chevrolet Onix 2026">
+                        <div class="carro-info">
+                            <h3>Chevrolet Onix 2026</h3>
+                            <p>Novo modelo, tecnologia e segurança de ponta.</p>
+                            <a href="https://wa.me/558386647011?text=Olá%2C%20gostaria%20de%20alugar%20o%20Onix." target="_blank" class="btn-contratar">Contratar via WhatsApp</a>
+                        </div>
+                    </div>
+
+                    <div class="carro-card">
+                        <img src="image_ad7467.png" alt="Chevrolet Prisma 2021">
+                        <div class="carro-info">
+                            <h3>Chevrolet Prisma 2021</h3>
+                            <p>Completo, Ar Condicionado, Direção Elétrica.</p>
+                            <a href="https://wa.me/558386647011?text=Olá%2C%20gostaria%20de%20alugar%20o%20Prisma." target="_blank" class="btn-contratar">Contratar via WhatsApp</a>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <section id="contato">
+            <div class="container">
+                <h2>Fale Conosco e Alugue Seu Carro!</h2>
+                <p>Entre em contato pelas nossas redes sociais para orçamentos e dúvidas.</p>
+                
+                <div class="contato-links">
+                    <a 
+                        href="https://wa.me/558386647011?text=Olá%2C%20gostaria%20de%20alugar%20um%20carro." 
+                        target="_blank" 
+                        class="btn-social btn-whatsapp"
+                    >
+                        WhatsApp
+                    </a>
+
+                    <a 
+                        href="https://www.instagram.com/sevencar._?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" 
+                        target="_blank" 
+                        class="btn-social btn-instagram"
+                    >
+                        Instagram
+                    </a>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 Seven Car. Todos os Direitos Reservados. | Design Blue Palette.</p>
+        </div>
+    </footer>
+
+</body>
+</html>
