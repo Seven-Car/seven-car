@@ -32,8 +32,10 @@
             line-height: 1.6;
             color: var(--dark-color);
             background-color: white;
-            /* Mantém a largura mínima para forçar o layout de DESKTOP no resto da página */
+            /* FORÇA O LAYOUT DE DESKTOP em todos os dispositivos (inclui menu cortado no mobile) */
             min-width: 1000px; 
+            /* Espaçamento no topo para o conteúdo não ficar atrás do cabeçalho fixo */
+            padding-top: 130px; 
         }
 
         a {
@@ -75,22 +77,27 @@
             transform: translateY(0);
         }
 
-        /* --- HEADER E NAVEGAÇÃO (DESKTOP PADRÃO) --- */
+        /* --- HEADER FIXO E NAVEGAÇÃO (ESTILO DESKTOP) --- */
         header {
             background: white;
             padding: 10px 0; 
             border-bottom: 3px solid var(--primary-color);
-            position: sticky;
+            /* POSICIONAMENTO FIXO: Fica no topo da tela acompanhando o scroll */
+            position: fixed; 
             top: 0;
+            width: 100%; 
             z-index: 1000;
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-            position: static; 
         }
 
         header .container {
             display: flex;
             justify-content: space-between; 
             align-items: center; 
+            /* Garante que o menu mantenha a largura de desktop */
+            width: 90%; 
+            max-width: 1200px;
+            margin: auto;
         }
 
         header .logo {
@@ -105,7 +112,7 @@
         
         nav ul {
             list-style: none;
-            display: flex; /* Horizontal no desktop */
+            display: flex; 
             align-items: center; 
         }
 
@@ -168,70 +175,30 @@
             gap: 20px; 
         }
 
+        /* --- FOOTER --- */
+        footer {
+            background: var(--dark-color);
+            color: white;
+            text-align: center;
+            padding: 20px 0;
+            font-size: 0.9em;
+        }
+
         /* ****************************************************** */
-        /* --- OTIMIZAÇÃO PARA MOBILE (SÓ HEADER E BANNER) --- */
+        /* --- TROCA DE BANNER PARA CELULAR (ÚNICA EXCEÇÃO) --- */
         /* ****************************************************** */
         @media (max-width: 768px) {
             
-            /* Remove a largura mínima para que o header e o banner se ajustem ao celular */
-            body {
-                min-width: unset; 
-            }
-            
-            /* 1. CABEÇALHO: Logo e Menu empilhados */
-            header .container {
-                flex-direction: column; /* Empilha logo e menu */
-                align-items: center; 
-                width: 95%; 
-            }
-
-            /* 1a. LOGO: Reduz o tamanho da logo no celular */
-            header .logo img {
-                height: 70px; 
-                margin-bottom: 10px; 
-            }
-            
-            /* 1b. NAVEGAÇÃO: Links verticais e ocupando toda a largura */
-            nav {
-                width: 100%;
-            }
-
-            nav ul {
-                flex-direction: column; /* Links verticais */
-                width: 100%;
-            }
-
-            nav ul li {
-                width: 100%;
-                text-align: center;
-                border-bottom: 1px solid #eee;
-            }
-            
-            /* Ajuste o preenchimento dos links para serem maiores */
-            nav ul li a {
-                padding: 12px 0;
-                color: var(--primary-color);
-            }
-            
-            /* O botão Contato/WhatsApp agora é um link normal na lista */
-            nav ul li .btn-header-whatsapp {
-                margin: 10px auto;
-                padding: 10px;
-                display: block; /* Ocupa a largura total da lista */
-                width: 90%;
-                border-radius: 5px;
-                font-size: 1em;
-            }
-            
-            /* 2. BANNER: Troca para o otimizado para celular */
+            /* Troca de banner para o otimizado para celular */
             #hero {
-                background: url('banner-cell.png') no-repeat center center/contain; /* contain para garantir que caiba */
+                background: url('banner-cell.png') no-repeat center center/contain;
                 height: 350px; 
                 background-size: cover; 
             }
             
-            /* O restante do layout (Galeria, Frota, etc.) manterá o estilo fixo/desktop (min-width: 1000px) 
-               e poderá exigir rolagem horizontal no celular. */
+            /* O resto do layout (incluindo o header) mantém o min-width: 1000px do body 
+               e será cortado, exigindo rolagem horizontal. */
+            
         }
     </style>
 </head>
