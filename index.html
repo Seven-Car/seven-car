@@ -5,6 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Seven Car | Aluguel de Carros</title>
     <style>
+        /* --- ROLAGEM SUAVE (SMOOTH SCROLLING) --- */
+        html {
+            scroll-behavior: smooth; /* Essencial para o efeito de rolagem suave ao clicar nos links internos */
+        }
+        
         /* --- PALETA DE AZUIS E ESTILOS GERAIS --- */
         :root {
             --primary-color: #004d99; /* Azul Marinho Profundo */
@@ -27,7 +32,6 @@
             line-height: 1.6;
             color: var(--dark-color);
             background-color: white;
-            /* Adiciona uma largura mínima para telas muito pequenas, forçando a barra de rolagem horizontal */
             min-width: 1000px; 
         }
 
@@ -59,6 +63,20 @@
             font-weight: 500;
         }
 
+        /* --- EFEITOS DE TRANSIÇÃO (FADE-IN/SLIDE-UP) --- */
+        /* Estado inicial: Elementos escondidos, prontos para a transição */
+        .hidden {
+            opacity: 0;
+            transform: translateY(20px); /* Começa 20px abaixo da posição final */
+            transition: opacity 1s ease-out, transform 1s ease-out;
+        }
+
+        /* Estado final: Elementos visíveis (aplicado via JavaScript) */
+        .fade-in {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
         /* --- HEADER E NAVEGAÇÃO (ESTILO FIXO/DESKTOP) --- */
         header {
             background: white;
@@ -83,7 +101,6 @@
         }
 
         header .logo img {
-            /* LOGO MAIS DESTACADO: 100PX */
             height: 100px; 
             width: auto; 
             vertical-align: middle;
@@ -95,7 +112,7 @@
         
         nav ul {
             list-style: none;
-            display: flex; /* Mantém horizontal */
+            display: flex; 
             align-items: center; 
         }
 
@@ -148,7 +165,6 @@
         
         .galeria-grid {
             display: grid;
-            /* Mantém o grid de 4 colunas */
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 15px;
             margin-top: 30px;
@@ -192,7 +208,6 @@
             border-radius: 8px;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
             border-top: 5px solid var(--secondary-color);
-            /* Mantém o flexbox para 4 colunas */
             flex: 1 1 200px;
             min-width: 250px;
         }
@@ -210,7 +225,6 @@
 
         .frota-grid {
             display: grid;
-            /* Mantém o grid de 4 colunas */
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 30px;
             margin-top: 30px;
@@ -320,7 +334,6 @@
             padding: 20px 0;
             font-size: 0.9em;
         }
-        /* A seção de Media Queries (responsividade) foi removida. */
     </style>
 </head>
 <body>
@@ -350,10 +363,10 @@
     </header>
 
     <main>
-        <section id="hero">
+        <section id="hero" class="hidden">
         </section>
 
-        <section id="galeria-impacto">
+        <section id="galeria-impacto" class="hidden">
             <div class="container">
                 <h2>Qualidade e Atendimento que Você Merece</h2>
                 <div class="galeria-grid">
@@ -378,7 +391,7 @@
             </div>
         </section>
         
-        <section id="vantagens">
+        <section id="vantagens" class="hidden">
             <div class="container">
                 <h2>Nossos Compromissos</h2>
                 <p class="subheading">Confiança em Cada Quilômetro.</p> 
@@ -404,7 +417,7 @@
             </div>
         </section>
 
-        <section id="frota">
+        <section id="frota" class="hidden">
             <div class="container">
                 <h2>Nossa Frota</h2>
                 <div class="frota-grid">
@@ -449,7 +462,7 @@
             </div>
         </section>
 
-        <section id="contato">
+        <section id="contato" class="hidden">
             <div class="container">
                 <h2>Fale Conosco e Alugue Seu Carro!</h2>
                 <p>Entre em contato pelas nossas redes sociais para orçamentos e dúvidas.</p>
@@ -481,6 +494,23 @@
             <p>&copy; 2024 Seven Car. Todos os Direitos Reservados. | Design Blue Palette.</p>
         </div>
     </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Seleciona todas as seções que têm a classe 'hidden'
+            const sections = document.querySelectorAll('.hidden');
+
+            // Adiciona a classe 'fade-in' a cada seção após um pequeno delay (escalonado)
+            sections.forEach((section, index) => {
+                // Multiplica o índice por 300ms para criar um atraso
+                // Isso faz com que as seções apareçam em sequência
+                setTimeout(() => {
+                    section.classList.remove('hidden');
+                    section.classList.add('fade-in');
+                }, index * 300);
+            });
+        });
+    </script>
 
 </body>
 </html>
