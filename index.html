@@ -1,23 +1,3 @@
-Entendido. Você deseja reverter a maioria das otimizações para celular, voltando ao comportamento original de **layout fixo de desktop em todos os dispositivos** (`min-width: 1000px`), mas quer **manter duas exceções**:
-
-1.  A **Barra de Navegação Fica Fixa** no topo (`position: fixed`).
-2.  O **Banner Principal** troca para o otimizado para celular (`banner-cell.png`) em telas pequenas.
-
-Isso significa que, no celular, você terá:
-
-  * **Barra de navegação fixa e visível** no topo.
-  * **Banner correto** que se adapta à largura.
-  * **O resto da página (incluindo o menu fixo) exigirá rolagem horizontal** para ver o link "Contato" e o restante das seções, voltando ao "bug" original que você havia solicitado anteriormente.
-
-Aqui está o código atualizado com essas regras:
-
------
-
-## Código HTML e CSS Atualizado (Layout Fixo Total, Banner Responsivo e Barra Fixa)
-
-A principal alteração é que na `@media query` do celular, a única coisa que ajustamos é o `banner` e mantemos o `body` com `min-width: 1000px` (que é a regra padrão fora da media query), forçando o layout fixo.
-
-```html
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
@@ -396,5 +376,6 @@ A principal alteração é que na `@media query` do celular, a única coisa que 
 </body>
 </html>
 ```
+
 
 
