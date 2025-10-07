@@ -4,6 +4,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Seven Car | Aluguel de Carros</title>
     <style>
+        /* --- ROLAGEM SUAVE (SMOOTH SCROLLING) --- */
+        html {
+            scroll-behavior: smooth; 
+        }
+        
         /* --- PALETA DE AZUIS E ESTILOS GERAIS --- */
         :root {
             --primary-color: #004d99; /* Azul Marinho Profundo (para textos e bordas) */
@@ -285,6 +290,21 @@
             padding: 20px 0;
             font-size: 0.9em;
         }
+          /* ****************************************************** */
+        /* --- AJUSTES PARA CELULAR (SÓ BANNER OTIMIZADO) --- */
+        /* ****************************************************** */
+        @media (max-width: 768px) {
+            
+            /* ÚNICA MUDANÇA: Troca de banner para o otimizado para celular */
+            #hero {
+                background: url('banner-cell.png') no-repeat center center/cover;
+                height: 350px; 
+                background-size: cover; 
+            }
+            
+            /* O resto do layout (incluindo o header) mantém o min-width: 1000px do body 
+               e será cortado, exigindo rolagem horizontal no celular. */
+            
     </style>
 </head>
 <body>
@@ -423,7 +443,7 @@
                     target="_blank" 
                     class="btn-whatsapp"
                 >
-                    WhatsApp: +55 (83) 98636-7368
+                    whatssap
                 </a>
             </div>
         </section>
@@ -438,3 +458,4 @@
 
 </body>
 </html>
+
