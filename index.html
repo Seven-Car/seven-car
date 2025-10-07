@@ -27,6 +27,8 @@
             line-height: 1.6;
             color: var(--dark-color);
             background-color: white;
+            /* Adiciona uma largura mínima para telas muito pequenas, forçando a barra de rolagem horizontal */
+            min-width: 1000px; 
         }
 
         a {
@@ -57,7 +59,7 @@
             font-weight: 500;
         }
 
-        /* --- HEADER E NAVEGAÇÃO (DESKTOP) --- */
+        /* --- HEADER E NAVEGAÇÃO (ESTILO FIXO/DESKTOP) --- */
         header {
             background: white;
             padding: 10px 0; 
@@ -81,7 +83,7 @@
         }
 
         header .logo img {
-            /* LOGO MAIS DESTACADO NO DESKTOP */
+            /* LOGO MAIS DESTACADO: 100PX */
             height: 100px; 
             width: auto; 
             vertical-align: middle;
@@ -93,7 +95,7 @@
         
         nav ul {
             list-style: none;
-            display: flex;
+            display: flex; /* Mantém horizontal */
             align-items: center; 
         }
 
@@ -146,6 +148,7 @@
         
         .galeria-grid {
             display: grid;
+            /* Mantém o grid de 4 colunas */
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 15px;
             margin-top: 30px;
@@ -189,6 +192,7 @@
             border-radius: 8px;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
             border-top: 5px solid var(--secondary-color);
+            /* Mantém o flexbox para 4 colunas */
             flex: 1 1 200px;
             min-width: 250px;
         }
@@ -206,6 +210,7 @@
 
         .frota-grid {
             display: grid;
+            /* Mantém o grid de 4 colunas */
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 30px;
             margin-top: 30px;
@@ -271,7 +276,7 @@
             margin-bottom: 30px;
         }
         
-        /* Container para alinhar os botões em linha (Desktop) */
+        /* Container para alinhar os botões em linha */
         .contato-links {
             display: flex;
             justify-content: center;
@@ -315,94 +320,7 @@
             padding: 20px 0;
             font-size: 0.9em;
         }
-
-        /* ****************************************************** */
-        /* --- RESPONSIVIDADE (MOBILE: TELAS ATÉ 768PX) --- */
-        /* ****************************************************** */
-        @media (max-width: 768px) {
-            
-            /* Ajuste o contêiner do cabeçalho */
-            header .container {
-                /* Permite que o logo e o menu fiquem um abaixo do outro se necessário */
-                flex-direction: column; 
-                align-items: flex-start; /* Alinha tudo à esquerda */
-                padding-bottom: 5px;
-            }
-
-            /* 1. LOGO: Reduz o tamanho da logo no celular */
-            header .logo img {
-                height: 70px; 
-                margin-bottom: 10px; /* Adiciona espaço entre a logo e o menu */
-            }
-
-            /* 2. NAVEGAÇÃO: Menu fica empilhado e ocupa toda a largura */
-            nav {
-                width: 100%;
-                margin-left: 0;
-            }
-
-            nav ul {
-                flex-direction: column; /* Links verticais */
-                width: 100%;
-            }
-
-            nav ul li {
-                width: 100%;
-                text-align: center;
-            }
-
-            nav ul li a {
-                padding: 12px 0;
-                border-bottom: 1px solid #eee; /* Linha sutil para separar os links */
-                color: var(--primary-color);
-            }
-            
-            /* Botão de contato no menu de navegação */
-            nav ul li .btn-header-whatsapp {
-                margin: 10px 0;
-                padding: 10px;
-                display: block;
-                border-radius: 5px;
-            }
-
-            /* 3. TÍTULOS E SUBTÍTULOS */
-            h2 {
-                font-size: 1.8em;
-            }
-            .subheading {
-                font-size: 1em;
-            }
-            
-            /* 4. GALERIA E FROTA: Reduz o tamanho das imagens para telas menores */
-            .galeria-grid, .frota-grid {
-                grid-template-columns: 1fr; /* Uma coluna por linha */
-            }
-
-            .galeria-item img, .carro-card img {
-                height: 200px; /* Reduz a altura da imagem do carro */
-            }
-            
-            /* 5. VANTAGENS */
-            .vantagem-item {
-                flex: 1 1 100%; /* Ocupa 100% da largura */
-                min-width: unset;
-            }
-            
-            /* 6. RODAPÉ (CONTATO) */
-            #contato {
-                padding: 40px 0;
-            }
-            
-            .contato-links {
-                flex-direction: column; /* Botões ficam um abaixo do outro */
-                gap: 15px;
-            }
-            
-            .btn-social {
-                width: 80%; /* Botões mais largos para o toque */
-                margin: 0 auto;
-            }
-        }
+        /* A seção de Media Queries (responsividade) foi removida. */
     </style>
 </head>
 <body>
@@ -565,8 +483,4 @@
     </footer>
 
 </body>
-</html>
-
-</body>
-
 </html>
