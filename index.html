@@ -1,3 +1,23 @@
+Entendido. Você deseja reverter a maioria das otimizações para celular, voltando ao comportamento original de **layout fixo de desktop em todos os dispositivos** (`min-width: 1000px`), mas quer **manter duas exceções**:
+
+1.  A **Barra de Navegação Fica Fixa** no topo (`position: fixed`).
+2.  O **Banner Principal** troca para o otimizado para celular (`banner-cell.png`) em telas pequenas.
+
+Isso significa que, no celular, você terá:
+
+  * **Barra de navegação fixa e visível** no topo.
+  * **Banner correto** que se adapta à largura.
+  * **O resto da página (incluindo o menu fixo) exigirá rolagem horizontal** para ver o link "Contato" e o restante das seções, voltando ao "bug" original que você havia solicitado anteriormente.
+
+Aqui está o código atualizado com essas regras:
+
+-----
+
+## Código HTML e CSS Atualizado (Layout Fixo Total, Banner Responsivo e Barra Fixa)
+
+A principal alteração é que na `@media query` do celular, a única coisa que ajustamos é o `banner` e mantemos o `body` com `min-width: 1000px` (que é a regra padrão fora da media query), forçando o layout fixo.
+
+```html
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
@@ -32,9 +52,9 @@
             line-height: 1.6;
             color: var(--dark-color);
             background-color: white;
-            /* DESKTOP: FORÇA A LARGURA MÍNIMA */
+            /* FORÇA O LAYOUT DE DESKTOP EM TODOS OS DISPOSITIVOS */
             min-width: 1000px; 
-            /* Espaçamento para o cabeçalho fixo no desktop */
+            /* Espaçamento para o cabeçalho fixo */
             padding-top: 130px; 
         }
 
@@ -82,7 +102,7 @@
             background: white;
             padding: 10px 0; 
             border-bottom: 3px solid var(--primary-color);
-            /* FICA NO TOPO DA TELA ACOMPANHANDO O SCROLL EM AMBOS */
+            /* MANTIDO FIXO NO TOPO */
             position: fixed; 
             top: 0;
             width: 100%; 
@@ -123,6 +143,7 @@
             transition: color 0.3s;
         }
         
+        /* ESTILO DO BOTÃO DE WHATSAPP NO HEADER */
         nav ul li .btn-header-whatsapp {
             background-color: var(--whatsapp-color);
             color: white;
@@ -183,70 +204,20 @@
         }
 
         /* ****************************************************** */
-        /* --- AJUSTES PARA CELULAR (TOTALMENTE RESPONSIVO) --- */
+        /* --- AJUSTES PARA CELULAR (SÓ BANNER OTIMIZADO) --- */
         /* ****************************************************** */
         @media (max-width: 768px) {
             
-            /* CORREÇÃO DE BUG: Permite que a página se ajuste à largura da tela e retira a rolagem lateral */
-            body {
-                min-width: unset; 
-                padding-top: 150px; 
-            }
-
-            /* 1. Otimização do Cabeçalho (Barra Fica Fixa e Visível) */
-            header .container {
-                flex-direction: column; /* Empilha logo e menu */
-                align-items: center; 
-                width: 95%; /* Usa mais espaço na tela */
-            }
-
-            header .logo img {
-                height: 70px; 
-                margin-bottom: 10px; 
-            }
-            
-            nav {
-                width: 100%;
-            }
-
-            nav ul {
-                flex-direction: column; /* Links verticais */
-                width: 100%;
-            }
-
-            nav ul li {
-                width: 100%;
-                text-align: center;
-                border-bottom: 1px solid #eee;
-            }
-            
-            nav ul li a {
-                padding: 12px 0;
-                color: var(--primary-color);
-            }
-            
-            /* Garante que o botão Contato seja visível */
-            nav ul li .btn-header-whatsapp {
-                margin: 10px auto;
-                padding: 10px;
-                display: block; 
-                width: 90%;
-                border-radius: 5px;
-                font-size: 1em;
-            }
-            
-            /* 2. Troca de banner para o otimizado para celular */
+            /* ÚNICA MUDANÇA: Troca de banner para o otimizado para celular */
             #hero {
                 background: url('banner-cell.png') no-repeat center center/cover;
                 height: 350px; 
                 background-size: cover; 
             }
             
-            /* 3. Otimização de Grids (Ajuste para coluna única no celular) */
-            .frota-grid, .galeria-grid, .vantagens-grid, .contato-links {
-                grid-template-columns: 1fr; 
-                flex-direction: column;
-            }
+            /* O resto do layout (incluindo o header) mantém o min-width: 1000px do body 
+               e será cortado, exigindo rolagem horizontal no celular. */
+            
         }
     </style>
 </head>
@@ -424,5 +395,6 @@
 
 </body>
 </html>
+```
 
 
