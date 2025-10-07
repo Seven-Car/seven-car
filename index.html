@@ -32,9 +32,9 @@
             line-height: 1.6;
             color: var(--dark-color);
             background-color: white;
-            /* FORÇA O LAYOUT DE DESKTOP EM TODOS OS DISPOSITIVOS */
+            /* APENAS NO DESKTOP: FORÇA A LARGURA MÍNIMA */
             min-width: 1000px; 
-            /* Espaçamento para o cabeçalho fixo */
+            /* Espaçamento para o cabeçalho fixo no desktop */
             padding-top: 130px; 
         }
 
@@ -368,24 +368,28 @@
             // Seleciona todos os elementos que devem aparecer suavemente
             const hiddenSections = document.querySelectorAll('.hidden');
 
-            // Cria um observador
-            const observer = new IntersectionObserver((entries) => {
+            // Configuração do observador
+            const observerOptions = {
+                // Dispara a animação quando o elemento entra 10% na tela
+                threshold: 0.1 
+            };
+
+            // Cria o observador
+            const observer = new IntersectionObserver((entries, observer) => {
                 entries.forEach(entry => {
-                    // Se a seção estiver visível (ou parcialmente visível)
+                    // Se a seção estiver visível
                     if (entry.isIntersecting) {
-                        // Adiciona a classe que dispara a transição
+                        // Adiciona a classe que dispara a transição CSS
                         entry.target.classList.add('fade-in');
-                        // Para de observar, já que o elemento já apareceu
+                        // Para de observar o elemento
                         observer.unobserve(entry.target);
                     }
                 });
-            }, {
-                // A animação será disparada quando 10% do elemento entrar na tela
-                threshold: 0.1 
-            });
+            }, observerOptions);
 
             // Aplica o observador a cada seção
             hiddenSections.forEach(section => {
+                // Inicia a observação para cada seção que tem a classe 'hidden'
                 observer.observe(section);
             });
         });
@@ -393,4 +397,5 @@
 
 </body>
 </html>
+
 
