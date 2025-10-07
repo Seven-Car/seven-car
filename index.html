@@ -7,18 +7,18 @@
     <style>
         /* --- ROLAGEM SUAVE (SMOOTH SCROLLING) --- */
         html {
-            scroll-behavior: smooth; /* Essencial para o efeito de rolagem suave ao clicar nos links internos */
+            scroll-behavior: smooth; 
         }
         
         /* --- PALETA DE AZUIS E ESTILOS GERAIS --- */
         :root {
-            --primary-color: #004d99; /* Azul Marinho Profundo */
-            --secondary-color: #007bff; /* Azul Vivo */
+            --primary-color: #004d99; 
+            --secondary-color: #007bff; 
             --dark-color: #333;
-            --light-bg: #f2f7ff; /* Azul claro suave */
+            --light-bg: #f2f7ff; 
             --whatsapp-color: #25D366;
-            --gallery-bg: #f8f8f8; /* Fundo cinza claro para as fotos */
-            --instagram-color: #E1306C; /* Cor do Instagram */
+            --gallery-bg: #f8f8f8; 
+            --instagram-color: #E1306C; 
         }
 
         * {
@@ -32,7 +32,7 @@
             line-height: 1.6;
             color: var(--dark-color);
             background-color: white;
-            /* FORÇA O LAYOUT DE DESKTOP e a barra de rolagem horizontal no celular */
+            /* Mantém a largura mínima para forçar o layout de DESKTOP no resto da página */
             min-width: 1000px; 
         }
 
@@ -55,7 +55,6 @@
             color: var(--primary-color);
         }
 
-        /* ESTILO PARA A LEGENDA CURTA */
         .subheading {
             text-align: center;
             font-size: 1.2em;
@@ -76,7 +75,7 @@
             transform: translateY(0);
         }
 
-        /* --- HEADER E NAVEGAÇÃO --- */
+        /* --- HEADER E NAVEGAÇÃO (DESKTOP PADRÃO) --- */
         header {
             background: white;
             padding: 10px 0; 
@@ -95,7 +94,6 @@
         }
 
         header .logo {
-            position: static; 
             margin-right: auto;
         }
 
@@ -105,13 +103,9 @@
             vertical-align: middle;
         }
         
-        nav {
-            margin-left: 0; 
-        }
-        
         nav ul {
             list-style: none;
-            display: flex; 
+            display: flex; /* Horizontal no desktop */
             align-items: center; 
         }
 
@@ -121,10 +115,6 @@
             display: block;
             font-weight: 600;
             transition: color 0.3s;
-        }
-
-        nav ul li a:hover {
-            color: var(--secondary-color);
         }
         
         /* ESTILO DO BOTÃO DE WHATSAPP NO HEADER */
@@ -136,11 +126,6 @@
             margin-left: 15px;
             font-weight: bold;
             transition: background-color 0.3s;
-        }
-
-        nav ul li .btn-header-whatsapp:hover {
-            background-color: #1da84f; 
-            color: white;
         }
 
         /* --- SEÇÃO HERO (BANNER DESKTOP PADRÃO) --- */
@@ -156,43 +141,14 @@
             display: none;
         }
         
-        /* --- SEÇÃO GALERIA DE IMPACTO (UNIFICADA) --- */
-        #galeria-impacto {
-            background-color: var(--gallery-bg);
-            padding: 60px 0;
-        }
+        /* --- DEMAIS SEÇÕES (VANTAGENS, FROTA, CONTATO) mantêm o estilo desktop fixo --- */
         
         .galeria-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 15px;
-            margin-top: 30px;
         }
         
-        .galeria-item {
-            overflow: hidden;
-            border-radius: 8px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
-        }
-        
-        .galeria-item img {
-            width: 100%;
-            height: 250px; 
-            object-fit: cover;
-            display: block;
-            transition: transform 0.3s;
-        }
-        
-        .galeria-item img:hover {
-            transform: scale(1.05);
-        }
-
-        /* --- SEÇÃO VANTAGENS (TEXTUAL) --- */
-        #vantagens {
-            background-color: var(--light-bg);
-            padding: 60px 0;
-        }
-
         .vantagens-grid {
             display: flex;
             flex-wrap: wrap;
@@ -200,162 +156,82 @@
             justify-content: center;
         }
 
-        .vantagem-item {
-            background: white;
-            padding: 25px;
-            text-align: center;
-            border-radius: 8px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            border-top: 5px solid var(--secondary-color);
-            flex: 1 1 200px;
-            min-width: 250px;
-        }
-
-        .vantagem-item h3 {
-            color: var(--primary-color);
-            margin-bottom: 10px;
-        }
-
-        /* --- SEÇÃO NOSSA FROTA --- */
-        #frota {
-            padding: 60px 0;
-            background-color: white;
-        }
-
         .frota-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 30px;
-            margin-top: 30px;
         }
 
-        .carro-card {
-            background: var(--light-bg);
-            border: 1px solid #ddd;
-            border-radius: 8px;
-            overflow: hidden;
-            text-align: center;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s;
-        }
-
-        .carro-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
-        }
-
-        .carro-card img {
-            width: 100%;
-            height: 250px;
-            object-fit: cover;
-            border-bottom: 1px solid var(--secondary-color);
-        }
-
-        .carro-info {
-            padding: 20px;
-        }
-
-        .carro-info h3 {
-            color: var(--primary-color);
-            margin-bottom: 15px;
-            font-size: 1.6em;
-        }
-
-        .carro-info .btn-contratar {
-            display: inline-block;
-            background: var(--whatsapp-color);
-            color: white;
-            padding: 10px 20px;
-            border-radius: 5px;
-            margin-top: 15px;
-            transition: background 0.3s;
-            font-weight: bold;
-        }
-
-        .carro-info .btn-contratar:hover {
-            background: #1da84f;
-        }
-
-        /* --- SEÇÃO CONTATO (WHATSAPP E INSTAGRAM) NO RODAPÉ --- */
-        #contato {
-            background: var(--primary-color);
-            color: white;
-            padding: 60px 0;
-            text-align: center;
-        }
-
-        #contato h2 {
-            color: white;
-            margin-bottom: 30px;
-        }
-        
         .contato-links {
             display: flex;
             justify-content: center;
             gap: 20px; 
-            margin-top: 30px;
-        }
-
-        .btn-social {
-            display: inline-block;
-            color: white;
-            font-size: 1.2em;
-            padding: 15px 30px;
-            border-radius: 50px;
-            transition: opacity 0.3s;
-            font-weight: bold;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
-            text-decoration: none; 
-        }
-
-        .btn-whatsapp {
-            background: var(--whatsapp-color);
-        }
-
-        .btn-whatsapp:hover {
-            opacity: 0.9;
-        }
-
-        .btn-instagram {
-            background: var(--instagram-color);
-        }
-
-        .btn-instagram:hover {
-            opacity: 0.9;
-        }
-
-        /* --- FOOTER --- */
-        footer {
-            background: var(--dark-color);
-            color: white;
-            text-align: center;
-            padding: 20px 0;
-            font-size: 0.9em;
         }
 
         /* ****************************************************** */
-        /* --- TROCA DE BANNER PARA CELULAR (ÚNICA EXCEÇÃO) --- */
+        /* --- OTIMIZAÇÃO PARA MOBILE (SÓ HEADER E BANNER) --- */
         /* ****************************************************** */
         @media (max-width: 768px) {
-            /* Remove a largura mínima para permitir que o banner se ajuste */
+            
+            /* Remove a largura mínima para que o header e o banner se ajustem ao celular */
             body {
                 min-width: unset; 
             }
             
-            /* Troca o banner para o arquivo específico de celular */
-            #hero {
-                background: url('banner-cell.png') no-repeat center center/cover;
-                height: 350px; /* Reduz a altura para ficar melhor no celular */
-                background-size: cover; /* Garante que a imagem cubra a área */
-            }
-            
-            /* Garante que o container do header se ajuste, mas o menu não quebra */
+            /* 1. CABEÇALHO: Logo e Menu empilhados */
             header .container {
-                width: 95%; /* Usa mais espaço na tela */
+                flex-direction: column; /* Empilha logo e menu */
+                align-items: center; 
+                width: 95%; 
+            }
+
+            /* 1a. LOGO: Reduz o tamanho da logo no celular */
+            header .logo img {
+                height: 70px; 
+                margin-bottom: 10px; 
             }
             
-            /* O resto do layout do site continua no estilo desktop (fixo), 
-               o que pode resultar em barras de rolagem horizontais em telas pequenas. */
+            /* 1b. NAVEGAÇÃO: Links verticais e ocupando toda a largura */
+            nav {
+                width: 100%;
+            }
+
+            nav ul {
+                flex-direction: column; /* Links verticais */
+                width: 100%;
+            }
+
+            nav ul li {
+                width: 100%;
+                text-align: center;
+                border-bottom: 1px solid #eee;
+            }
+            
+            /* Ajuste o preenchimento dos links para serem maiores */
+            nav ul li a {
+                padding: 12px 0;
+                color: var(--primary-color);
+            }
+            
+            /* O botão Contato/WhatsApp agora é um link normal na lista */
+            nav ul li .btn-header-whatsapp {
+                margin: 10px auto;
+                padding: 10px;
+                display: block; /* Ocupa a largura total da lista */
+                width: 90%;
+                border-radius: 5px;
+                font-size: 1em;
+            }
+            
+            /* 2. BANNER: Troca para o otimizado para celular */
+            #hero {
+                background: url('banner-cell.png') no-repeat center center/contain; /* contain para garantir que caiba */
+                height: 350px; 
+                background-size: cover; 
+            }
+            
+            /* O restante do layout (Galeria, Frota, etc.) manterá o estilo fixo/desktop (min-width: 1000px) 
+               e poderá exigir rolagem horizontal no celular. */
         }
     </style>
 </head>
@@ -395,7 +271,7 @@
                 <div class="galeria-grid">
                     
                     <div class="galeria-item">
-                        <img src="c.jpg" alt="Cliente com o polegar para cima">
+                        <img src="imgi_19_happy-customer-buying-new-car-dealership-2048x1367.jpg" alt="Cliente com o polegar para cima">
                     </div>
                     
                     <div class="galeria-item">
@@ -520,12 +396,9 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', () => {
-            // Seleciona todas as seções que têm a classe 'hidden'
             const sections = document.querySelectorAll('.hidden');
 
-            // Adiciona a classe 'fade-in' a cada seção após um pequeno delay (escalonado)
             sections.forEach((section, index) => {
-                // Multiplica o índice por 300ms para criar um atraso
                 setTimeout(() => {
                     section.classList.remove('hidden');
                     section.classList.add('fade-in');
